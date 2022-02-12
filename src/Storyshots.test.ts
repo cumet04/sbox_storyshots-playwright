@@ -1,9 +1,10 @@
 import initStoryshots from '@storybook/addon-storyshots';
 import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
-import playwright from 'playwright'
+import { Browser, chromium, devices } from 'playwright'
 import path from 'path'
 
-let browser: playwright.Browser;
+
+let browser: Browser;
 afterAll(() => {
   return browser.close();
 });
@@ -13,8 +14,9 @@ initStoryshots({
     storybookUrl: `file://${path.resolve(__dirname, '../storybook-static')}`,
     // MEMO: puppeteerパッケージを入れているとここで型エラーになる
     getCustomBrowser: async () => {
-      browser = await playwright.chromium.launch()
-      return browser
+      browser = await chromium.launch()
+      const context = await browser.newContext(devices['Pixel 5'])
+      return context
     }
   })
 });
