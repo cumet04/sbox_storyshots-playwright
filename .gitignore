@@ -23,3 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 src/__snapshots__
+src/__image_snapshots__
