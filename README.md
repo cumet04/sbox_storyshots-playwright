@@ -16,6 +16,11 @@ ls src/__image_snapshots__/
 ```
 
 備考
-* そのまま`npm ci`すると各ブラウザバイナリのダウンロードが同時に実行される。`env PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm ci`としてスキップしつつ、別途`npx playwright install`でダウンロードする方が安心（プログレスバーが正しく動く的な意味で）。
+* そのまま`npm ci`すると各ブラウザバイナリのダウンロードが同時に実行される。`env PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm ci`としてスキップしつつ、別途`npx playwright install`でダウンロードする方が安心（プログレスバーが正しく動く的な意味で）
 * ブラウザバイナリは`$HOME/.cache/ms-playwright`にダウンロードされる
 * WindowsやLinuxなどの環境では`npx playwright install-deps`が必要かもしれない。必要な場合はエラーメッセージにわかりやすく表示されるので、それに従えばok
+
+## 参考にする場合
+ReactやStorybookの基本以外で書く部分は`src/Storyshots.test.ts`がほぼ全て。`npx create-react-app`と`npx sb init`終了後から、マルチデバイスのスクショが取れるまでの差分は[こちら](https://github.com/cumet04/sbox_storyshots-playwright/compare/6de3772af5458ecc6b7a1071d31438373bef034e..764c96ddc3a752336a3d9a5acaed0edf6abe1ef9)。
+
+かなり丁寧にcommitを積んだつもりなので、commitを一つ一つ追いかければだいたい分かると思われる。
