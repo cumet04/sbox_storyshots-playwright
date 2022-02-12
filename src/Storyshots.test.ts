@@ -17,6 +17,17 @@ initStoryshots({
       browser = await chromium.launch()
       const context = await browser.newContext(devices['Pixel 5'])
       return context
-    }
+    },
+    getMatchOptions: (options) => {
+      const { kind, story } = options.context
+
+      const dir = path.resolve(__dirname, '__image_snapshots__', kind)
+      const name = story.replaceAll(/\s/g, '')
+
+      return {
+        customSnapshotsDir: path.resolve(dir),
+        customSnapshotIdentifier: name,
+      };
+    },
   })
 });
